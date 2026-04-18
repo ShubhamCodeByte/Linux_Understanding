@@ -1,0 +1,67 @@
+To master these, we’ll create a multi-line "dummy" log file so you can see how each command behaves differently.
+
+
+
+---
+
+### 1. Create the Practice File
+We will create a file with 15 lines of text.
+**Copy & Paste:**
+```bash
+seq -f "This is line %g" 15 > display_test.txt
+```
+
+---
+
+### 2. Full View & Reverse (`cat`, `tac`, `nl`)
+* **The Concept:** `cat` for quick reading, `tac` for reverse, and `nl` for line counting.
+**Copy & Paste:**
+```bash
+cat display_test.txt && tac display_test.txt && nl display_test.txt
+```
+
+---
+
+### 3. Smart Scrolling (`less`)
+* **The Concept:** Use `less` for large files. **Press `q` to exit** when you are done.
+**Copy & Paste:**
+```bash
+less display_test.txt
+```
+
+---
+
+### 4. Top & Bottom (`head`, `tail`)
+* **The Concept:** Peek at the start or the very end.
+**Copy & Paste:**
+```bash
+head -n 3 display_test.txt && tail -n 3 display_test.txt
+```
+
+---
+
+### 5. Real-Time Monitoring (`tail -f`)
+* **The Concept:** This "follows" the file. Open this, then you'd see updates live. 
+* **Action:** Run the command, then **Press `Ctrl + C`** to stop it.
+**Copy & Paste:**
+```bash
+tail -f display_test.txt
+```
+
+---
+
+### 6. Binary Peeking (`strings`)
+* **The Concept:** Extracts readable text from files that aren't meant to be read (like the `ls` command itself).
+**Copy & Paste:**
+```bash
+strings /bin/ls | head -n 5
+```
+
+---
+
+### Quick Verification:
+* Did `tac` actually put line 15 at the top?
+* Did `nl` help you see exactly how many lines were in the file?
+* Did you remember to use `q` to get out of the `less` pager?
+
+Ready for **1.1. Shell Arrays**, or want to learn how to **edit** these files with `nano` or `vi`?

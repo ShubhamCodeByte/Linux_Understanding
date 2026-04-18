@@ -1,0 +1,69 @@
+This is where the true power of the Linux command line lies. Redirection and Piping allow you to build "chains" of commands to process data automatically.
+
+
+
+---
+
+### 1. Overwrite vs. Append (`>` vs `>>`)
+* **The Concept:** `>` wipes the file clean; `>>` adds to the bottom.
+* **Copy & Paste:**
+```bash
+echo "First Line" > stream_test.txt && echo "Second Line" >> stream_test.txt && cat stream_test.txt
+```
+
+---
+
+### 2. Separating Success from Errors (`1>` and `2>`)
+* **The Concept:** We will try to list two things: one that exists and one that doesn't. We'll send the "good" info to one file and the "bad" info to another.
+* **Copy & Paste:**
+```bash
+ls stream_test.txt /nonexistent_folder > success.txt 2> error.txt
+```
+*(Now verify both: `cat success.txt` shows the file, `cat error.txt` shows the error message.)*
+
+---
+
+### 3. The "Black Hole" (`/dev/null`)
+* **The Concept:** Hiding errors so they don't clutter your screen.
+* **Copy & Paste:**
+```bash
+ls /root 2> /dev/null
+```
+*(Notice: No error message appeared even though you don't have permission to see `/root`.)*
+
+---
+
+### 4. Redirecting Input (`<`)
+* **The Concept:** Feeding a file into a command that usually waits for you to type.
+* **Copy & Paste:**
+```bash
+wc -l < stream_test.txt
+```
+*(This tells the `wc` (word count) command to count the lines in your file.)*
+
+---
+
+### 5. The Pipe (`|`)
+* **The Concept:** Passing the output of one command to another like a relay race. Let’s find all the files in `/etc` that contain the word "network".
+* **Copy & Paste:**
+```bash
+ls /etc | grep "network"
+```
+
+---
+
+### 6. The "Master Chain" (Pipe + Redirection)
+* **The Concept:** Let's take the list of all files in `/bin`, sort them in reverse, take the top 5, and save them to a file.
+* **Copy & Paste:**
+```bash
+ls /bin | sort -r | head -n 5 > top_bins.txt && cat top_bins.txt
+```
+
+---
+
+### Verification Checklist:
+* In **Step 1**, did you see both lines? (If you used `>` for both, you'd only see the second one).
+* In **Step 3**, did the terminal stay silent? (That means `/dev/null` successfully "ate" the error).
+* In **Step 6**, does `top_bins.txt` contain exactly 5 names?
+
+**You've mastered the plumbing of Linux! Ready to dive into Shell Arrays, or should we look at logic like `if/then` statements?**
