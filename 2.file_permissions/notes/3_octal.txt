@@ -1,0 +1,57 @@
+The **Octal Method** is the fastest way to set permissions. Instead of letters, you use a 3-digit number. Think of it as: **Owner | Group | Others**.
+
+
+
+---
+
+### 1. The Math Lab (4, 2, 1)
+* **The Concept:** * **7** (4+2+1) = Full access.
+    * **6** (4+2) = Read/Write.
+    * **4** (4) = Read Only.
+* **Copy & Paste:**
+```bash
+touch octal.txt && chmod 764 octal.txt && ls -l octal.txt
+```
+*(Check: You should see `rwx` for you, `rw-` for group, and `r--` for others.)*
+
+---
+
+### 2. Common Security Standards
+* **755:** Standard for scripts (Everyone can run it, only you can edit).
+* **644:** Standard for documents (Everyone can read, only you can edit).
+* **600:** Standard for private keys (Only you can see/edit).
+* **Copy & Paste:**
+```bash
+chmod 755 octal.txt && ls -l octal.txt
+chmod 600 octal.txt && ls -l octal.txt
+```
+
+---
+
+### 3. Understanding `umask` (The Subtractor)
+* **The Concept:** `umask` decides what permissions are **taken away** when a new file is born. If the umask is `022`, it takes away the **2** (Write) from Group and Others.
+* **Copy & Paste:**
+```bash
+umask && umask -S
+```
+
+---
+
+### 4. Changing the Default Security
+* **The Concept:** Let's set a "Paranoid" umask so that new files are private by default.
+* **Copy & Paste:**
+```bash
+umask 077 && touch private_file.txt && ls -l private_file.txt
+```
+*(Notice: The file is `rw-------`. No one but you can even see it because the 077 umask "masked" all permissions for others.)*
+
+---
+
+### Shortest Summary:
+* **4 (Read), 2 (Write), 1 (Execute)**.
+* **`chmod 755`**: Public Script.
+* **`chmod 644`**: Public Document.
+* **`chmod 600`**: Secret File.
+* **`umask`**: The "Default" filter for new files.
+
+**You've finished the Permissions module! Ready to move to 1.1. Linux Variables or Shell Arrays?**

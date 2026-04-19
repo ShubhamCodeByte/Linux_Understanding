@@ -1,0 +1,65 @@
+This lab demonstrates how to manipulate permissions using symbols and how directory permissions affect the files inside them.
+
+
+
+---
+
+### 1. Symbolic Basics (`u`, `g`, `o`)
+* **The Concept:** Granting specific powers to specific people.
+* **Copy & Paste:**
+```bash
+touch lab_file.txt && chmod u+x,g+w,o-r lab_file.txt && ls -l lab_file.txt
+```
+*(Check: You have `x`, group has `w`, and others lost `r`.)*
+
+---
+
+### 2. The "Set" Operator (`=`) and All (`a`)
+* **The Concept:** Overwriting all existing permissions at once.
+* **Copy & Paste:**
+```bash
+chmod a=r lab_file.txt && ls -l lab_file.txt
+```
+*(Check: Everyone now has **only** read access; `w` and `x` are gone.)*
+
+---
+
+### 3. Recursive & Verbose (`-R`, `-v`)
+* **The Concept:** Changing an entire folder structure and seeing the work happen.
+* **Copy & Paste:**
+```bash
+mkdir -p perm_folder/sub && chmod -Rv g+x perm_folder
+```
+
+---
+
+### 4. Dependency Test (The "Enter" Trap)
+* **The Concept:** You cannot `cd` into a folder without **Execute (x)**, even if you have Read (r).
+* **Copy & Paste:**
+```bash
+mkdir locked_dir && touch locked_dir/secret.txt && chmod u-x locked_dir
+cd locked_dir
+```
+*(You will get **Permission denied** because you lack `x` on the folder.)*
+
+---
+
+### 5. The "Delete" Rule
+* **The Concept:** Deleting a file depends on the **Folder's** write permission.
+* **Copy & Paste:**
+```bash
+chmod u+x locked_dir && chmod u-w locked_dir
+rm locked_dir/secret.txt
+```
+*(You cannot delete the file because the **folder** is locked for writing.)*
+
+---
+
+### Shortest Summary:
+* **`u+x`**: Make it executable for you.
+* **`a=r`**: Reset everything to Read-Only.
+* **`-R`**: Do it for everything inside.
+* **Folder `x`**: Required to "Enter" (`cd`).
+* **Folder `w`**: Required to "Delete" or "Create" files.
+
+**Ready for the Numeric Method (777, 755, 644) or moving to Linux Variables?**

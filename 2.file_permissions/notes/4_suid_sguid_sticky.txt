@@ -1,0 +1,56 @@
+This is the "Special Permissions" lab. These are the advanced bits that handle security and collaboration by overriding standard rules.
+
+
+
+---
+
+### 1. SUID Lab (Power of the Owner)
+* **The Concept:** Run a command with the File Owner's authority.
+* **Symbolic:** `u+s` | **Numeric:** `4` at the start.
+* **Copy & Paste:**
+```bash
+touch suid_test && chmod 4755 suid_test && ls -l suid_test
+```
+*(Check: Look for the `s` in the owner's block: `-rwsr-xr-x`)*
+
+---
+
+### 2. SGID Lab (Group Inheritance)
+* **The Concept:** Used for shared folders so every new file belongs to the same group.
+* **Symbolic:** `g+s` | **Numeric:** `2` at the start.
+* **Copy & Paste:**
+```bash
+mkdir shared_project && chmod 2775 shared_project && ls -ld shared_project
+```
+*(Check: Look for the `s` in the group block: `drwxrwsr-x`)*
+
+---
+
+### 3. Sticky Bit Lab (The Delete Shield)
+* **The Concept:** Allows everyone to add files, but only the owner can delete their own files.
+* **Symbolic:** `+t` | **Numeric:** `1` at the start.
+* **Copy & Paste:**
+```bash
+mkdir public_drop && chmod 1777 public_drop && ls -ld public_drop
+```
+*(Check: Look for the `t` at the very end: `drwxrwxrwt`)*
+
+---
+
+### 4. Combining All Special Bits
+* **The Concept:** You can set all three at once by adding the numbers (4+2+1 = 7).
+* **Copy & Paste:**
+```bash
+mkdir master_dir && chmod 7777 master_dir && ls -ld master_dir
+```
+*(Check: You will see `s`, `s`, and `t` all in one string!)*
+
+---
+
+### Shortest Summary Note:
+* **4 (SUID)**: Act like the **Owner**.
+* **2 (SGID)**: Inherit the **Group**.
+* **1 (Sticky)**: Only **Owner** can delete.
+* **Identification**: `s` (Owner), `s` (Group), `t` (Others/End).
+
+**We have officially cleared the File Permissions mountain! Ready to start 1.1. Linux Variables?**

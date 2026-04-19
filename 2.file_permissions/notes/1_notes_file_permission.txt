@@ -1,0 +1,124 @@
+This is a critical section for any Kali Linux user. File permissions are the "security guard" of your system. Understanding the difference between **User (u)**, **Group (g)**, and **Others (o)** is key to keeping your data safe.
+
+
+
+---
+
+### 1. Identify Existing Permissions
+Let's look at a file and decode the 10-character string.
+
+* **The Concept:** `ls -l` shows the permissions. We'll look for the `rwx` patterns.
+* **Copy & Paste:**
+```bash
+touch perm_test.txt && ls -l perm_test.txt
+```
+> **How to Read it:** The first `-` means it's a file. The next 3 characters are for **YOU**. The next 3 are for your **Group**. The last 3 are for **Everyone Else**.
+
+---
+
+### 2. Adding Execute Permission (`u+x`)
+This is the most common command you'll use for scripts.
+
+* **The Concept:** Make the file runnable for yourself only.
+* **Copy & Paste:**
+```bash
+chmod u+x perm_test.txt && ls -l perm_test.txt
+```
+
+---
+
+### 3. Removing Permissions (`g-w`, `o-r`)
+Let's lock down the file so others can't see it or change it.
+
+* **The Concept:** Remove **Write** from Group and **Read** from Others.
+* **Copy & Paste:**
+```bash
+chmod g-w,o-r perm_test.txt && ls -l perm_test.txt
+```
+
+---
+
+### 4. The "Nuclear" Option (`a+rwx`)
+Sometimes you want everyone to be able to do everything (be careful with this!).
+
+* **The Concept:** `a` stands for "All" (User + Group + Others).
+* **Copy & Paste:**
+```bash
+chmod a+rwx perm_test.txt && ls -l perm_test.txt
+```
+
+---
+
+### 5. Permission Denied Test
+Let's see the "Security Guard" in action by taking away our own ability to read our own file.
+
+* **The Concept:** Remove **Read** (`r`) from yourself (`u`) and try to `cat` the file.
+* **Copy & Paste:**
+```bash
+chmod u-r perm_test.txt && cat perm_test.txt
+```
+*(You should see a "Permission denied" error—even though you own the file!)*
+
+---
+
+### 6. Cleanup
+Restore your access so you can delete it.
+
+* **Copy & Paste:**
+```bash
+chmod u+r perm_test.txt && rm perm_test.txt
+```
+
+---
+
+### Shortest Summary Note:
+* **`u`** = User | **`g`** = Group | **`o`** = Others | **`a`** = All
+* **`+`** = Add | **`-`** = Remove | **`=`** = Set exactly
+* **`r`** = Read | **`w`** = Write | **`x`** = Execute
+
+**Next up, we have two choices: The Numeric Method for permissions (using numbers like 755) or Shell Variables?**
+
+
+
+
+
+
+
+Notes on the suid and the sguid :
+
+### Shortest Summary: Special Permissions
+
+* **SUID (`s` in user)**: Runs a file with the **File Owner's** authority.
+* **SGID (`s` in group)**: Forces new files to inherit the **Folder's Group**.
+* **Sticky Bit (`t`)**: Users can only delete **their own** files in a shared folder.
+
+---
+
+### Copy & Paste Lab
+
+**1. View System SUID & Sticky Bit:**
+```bash
+ls -l /usr/bin/passwd && ls -ld /tmp
+```
+*(Look for `s` in `passwd` and `t` in `/tmp`)*
+
+**2. Create your own "Sticky" Folder:**
+```bash
+mkdir sandbox && chmod +t sandbox && ls -ld sandbox
+```
+*(Look for the `t` at the end)*
+
+**3. Set SGID (Group Inheritance):**
+```bash
+chmod g+s sandbox && ls -ld sandbox
+```
+*(Look for the `s` in the group section)*
+
+---
+
+### Clean Up
+```bash
+rm -rf sandbox
+```
+
+**Next: Numeric Permissions (777/755) or Linux Variables?**
