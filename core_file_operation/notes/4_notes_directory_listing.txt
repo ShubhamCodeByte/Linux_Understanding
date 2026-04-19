@@ -1,0 +1,51 @@
+These commands help you visualize the "shape" and "weight" of your folders.
+
+
+
+---
+
+### 1. The "Back and Forth" (`cd -`)
+* **The Concept:** `cd -` acts like a "Last Channel" button on a TV remote.
+* **Copy & Paste:**
+```bash
+cd /etc && cd /var/log && cd - && pwd
+```
+*(You went to `/etc`, then `/var/log`. `cd -` took you back to `/etc`.)*
+
+---
+
+### 2. Seeing the "Skeleton" (`tree`)
+* **The Concept:** Shows folders and files in a visual hierarchy.
+* **Copy & Paste:**
+```bash
+mkdir -p a/b/c && tree a
+```
+*(Note: If Kali says `command not found`, run `sudo apt install tree -y` first.)*
+
+---
+
+### 3. List Folders Only (`ls -d */`)
+* **The Concept:** Filters out all regular files and only shows you directories.
+* **Copy & Paste:**
+```bash
+ls -d */
+```
+
+---
+
+### 4. Checking Folder Weight (`du -sh`)
+* **The Concept:** `du` (Disk Usage) tells you how much space a folder takes. `-s` is summary, `-h` is human-readable (MB/GB).
+* **Copy & Paste:**
+```bash
+du -sh /etc 2>/dev/null
+```
+
+---
+
+### Shortest Summary
+* **`cd -`**: Toggle between your last two folders.
+* **`tree`**: Visual map of folders.
+* **`ls -d */`**: Show only directories.
+* **`du -sh`**: Check folder size.
+
+**Ready for 1.1. Shell Arrays?**

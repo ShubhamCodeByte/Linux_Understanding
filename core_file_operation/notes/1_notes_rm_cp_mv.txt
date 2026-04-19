@@ -1,0 +1,90 @@
+This is where you start to feel like a "Power User." Managing files in bulk is much faster than using a mouse. We’ll create a small "mess" of files and then use these commands to organize them.
+
+
+
+---
+
+### 1. Setup the "Practice Mess"
+First, we need some files and folders to work with.
+
+* **The Concept:** We are creating a folder for backups and 5 empty text files named `file1.txt` through `file5.txt`.
+* **Copy & Paste:**
+```bash
+mkdir backup_folder && touch file1.txt file2.txt file3.txt fileA.txt fileB.txt
+```
+
+---
+
+### 2. The Power of Wildcards (*)
+Let's copy all files ending in `.txt` to our backup folder.
+
+* **The Concept:** `*.txt` tells Linux to grab everything that matches that pattern. We'll use `-v` (verbose) so you can see it happening.
+* **Copy & Paste:**
+```bash
+cp -v *.txt backup_folder/
+```
+
+---
+
+### 3. Renaming Files with `mv`
+Remember, Linux doesn't have a "rename" command; it just "moves" the file to a new name.
+
+* **The Concept:** We are renaming `fileA.txt` to `important_data.txt`.
+* **Copy & Paste:**
+```bash
+mv fileA.txt important_data.txt && ls
+```
+
+---
+
+### 4. Moving with the Question Mark (?) Wildcard
+The `?` matches exactly **one** character.
+
+* **The Concept:** We want to move `file1.txt`, `file2.txt`, and `file3.txt`, but **not** `fileB.txt` or `important_data.txt`.
+* **Copy & Paste:**
+```bash
+mkdir numbers_only && mv file?.txt numbers_only/
+```
+
+---
+
+### 5. Using the Interactive Flag (-i) for Safety
+This is your "Wait, are you sure?" button.
+
+* **The Concept:** We will try to copy a file into the backup folder where a copy already exists. The `-i` flag will make the terminal ask you for permission.
+* **Copy & Paste:**
+```bash
+cp -i fileB.txt backup_folder/
+```
+*(**Note:** It should ask you if you want to overwrite. Type `n` for No or `y` for Yes.)*
+
+---
+
+### 6. The "Update" Copy (-u)
+This is great for backups. It only copies if the file is new or has been changed.
+
+* **The Concept:** We will update the `important_data.txt` file and then use `cp -u`. Since the source is newer, it will copy. If you ran it again immediately, it would do nothing.
+* **Copy & Paste:**
+```bash
+echo "New Content" > important_data.txt && cp -uv important_data.txt backup_folder/
+```
+
+---
+
+### 7. Recursive Copying (Folders inside Folders)
+To copy a whole folder, you **must** use `-r`.
+
+* **The Concept:** We are copying the entire `numbers_only` folder into a new folder called `master_backup`.
+* **Copy & Paste:**
+```bash
+cp -r numbers_only master_backup && ls -R master_backup
+```
+
+---
+
+### Verification Checklist:
+* Did `ls -R` show you the files inside the `master_backup` folder?
+* When you used `mv file?.txt`, did `fileB.txt` stay behind? (It should have, because `B` is a character, but we only targeted the numbered files).
+* Did the `-v` flag help you see the "Source -> Destination" path?
+
+**Ready to move on to 1.1. Shell Arrays, or do you want to try some "Advanced Search" using the `find` command?**
