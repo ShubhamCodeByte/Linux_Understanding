@@ -1,0 +1,62 @@
+This lab covers the "Swiss Army Knife" of Linux—the small tools that give you quick answers about your system, time, and files.
+
+
+
+---
+
+### 1. System Identity
+* **The Concept:** Quickly find out who you are and what the system is doing.
+* **Copy & Paste:**
+```bash
+whoami && hostname && uname -a && uptime
+```
+
+---
+
+### 2. Time and Calendar
+* **The Concept:** View the date, a specific calendar, and test the "pause" function.
+* **Copy & Paste:**
+```bash
+date && cal 2026 && echo "Sleeping for 3 seconds..." && sleep 3 && echo "Done!"
+```
+
+---
+
+### 3. Calculations and Word Counts (`bc`, `wc`)
+* **The Concept:** Use `bc` for math and `wc` to count lines in your command history.
+* **Copy & Paste:**
+```bash
+echo "10 + 5" | bc && history | wc -l
+```
+*(Check: The second command tells you exactly how many commands you've typed in this session!)*
+
+---
+
+### 4. Custom Shortcuts (`alias`)
+* **The Concept:** Create a shortcut for a long command to save time.
+* **Copy & Paste:**
+```bash
+alias update='sudo apt update' && alias
+```
+*(Note: Typing `update` now would trigger the full command. `alias` by itself shows all your current shortcuts.)*
+
+---
+
+### 5. Getting Help (`whatis`, `man`)
+* **The Concept:** Use `whatis` for a "quick look" and `man` for the full manual.
+* **Copy & Paste:**
+```bash
+whatis grep && whatis cat && whatis sleep
+```
+*(Note: To exit a `man` page, always press **q**.)*
+
+---
+
+### Shortest Summary Note:
+* **`uname -a`**: System "ID card."
+* **`wc -l`**: Count lines.
+* **`alias`**: Create shortcuts.
+* **`history`**: See past commands.
+* **`whatis`**: Quick command definition.
+
+**Ready to wrap up the basics and head into 1.1. Shell Arrays?**

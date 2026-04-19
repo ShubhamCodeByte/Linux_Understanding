@@ -1,0 +1,70 @@
+This lab covers how the Shell operates, how to switch between different shells, and how to use built-in shortcuts to speed up your work.
+
+
+
+---
+
+### 1. Identity & Shell Type
+**Goal:** Confirm which shell you are using and see all options.
+```bash
+echo $SHELL && cat /etc/shells
+```
+
+---
+
+### 2. The REPL & Variable Evaluation
+**Goal:** See the shell "Evaluate" a variable before "Printing" it.
+```bash
+MY_NAME="Shubham"
+echo $MY_NAME
+```
+
+---
+
+### 3. Navigation Shortcuts (Tab & History)
+**Goal:** Practice speed features.
+* **Tab Completion:** Type `cd /et` and press **Tab**. (It completes to `/etc/`).
+* **History Search:** ```bash
+history | tail -n 5
+```
+* **Re-run:** Type `!!` to repeat the last command.
+
+---
+
+### 4. Privilege Levels (`$` vs `#`)
+**Goal:** Understand the difference between a standard user and Root.
+* **Observe your prompt:** It should end in `$`.
+* **Switch to Root:** ```bash
+sudo -i
+```
+*(Observe: Your prompt now ends in `#`. Type `exit` to return to normal.)*
+
+---
+
+### 5. Custom Shortcuts (`alias`)
+**Goal:** Create a shortcut for a system check.
+```bash
+alias syscheck='uname -a && uptime'
+syscheck
+```
+
+---
+
+### 6. Quick Scripting Lab
+**Goal:** Create and run a simple shell script.
+```bash
+echo -e "#!/bin/bash\necho 'User: \$USER'\ndate" > hello.sh
+chmod +x hello.sh
+./hello.sh
+```
+
+---
+
+### Shortest Summary Note
+* **`$`**: Standard User | **`#`**: Root User (`sudo -i`).
+* **`Tab`**: Auto-completes paths/commands.
+* **`history`**: Lists past commands; **`!!`** repeats the last one.
+* **`alias`**: Creates a command shortcut.
+* **`echo $SHELL`**: Identifies your current shell.
+
+**Ready to move on to 1.1. Shell Arrays or Text Processing (grep, sed, awk)?**

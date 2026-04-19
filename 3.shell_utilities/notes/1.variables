@@ -1,0 +1,63 @@
+This lab covers how to store, protect, and share data using variables. In Linux, variables are like containers—you put data in, and use the `$` sign to get it out.
+
+
+
+---
+
+### 1. Defining and Quoting
+* **The Concept:** Use `=` to assign (no spaces!). Double quotes `" "` evaluate variables, single quotes `' '` do not.
+* **Copy & Paste:**
+```bash
+MY_VAR="Kali" && echo "Double: $MY_VAR" && echo 'Single: $MY_VAR'
+```
+*(Check: Did the single quotes print the actual word `$MY_VAR`?)*
+
+---
+
+### 2. Local vs. Global (`export`)
+* **The Concept:** Local variables stay in your current window. `export` makes them "global" so child processes (like scripts) can see them.
+* **Copy & Paste:**
+```bash
+GREETING="Hello" && export GREETING && bash -c 'echo $GREETING'
+```
+*(Check: `bash -c` starts a child shell. Without `export`, it would show a blank line.)*
+
+---
+
+### 3. Protecting Data (`readonly`)
+* **The Concept:** Once a variable is `readonly`, it cannot be changed or deleted until you close the terminal.
+* **Copy & Paste:**
+```bash
+readonly SECRET="12345" && SECRET="999"
+```
+*(Check: You should get a "readonly variable" error.)*
+
+---
+
+### 4. System Variables (`env`)
+* **The Concept:** Linux has pre-defined variables like `PATH` and `USER`.
+* **Copy & Paste:**
+```bash
+echo "User: $USER" && echo "Home: $HOME" && echo "Current Shell: $SHELL"
+```
+
+---
+
+### 5. Deleting Variables (`unset`)
+* **The Concept:** Wipe a variable from memory.
+* **Copy & Paste:**
+```bash
+TEMP_VAR="DeleteMe" && unset TEMP_VAR && echo "Result: $TEMP_VAR"
+```
+*(Check: The result should be empty.)*
+
+---
+
+### Shortest Summary Note:
+* **`NAME="Val"`**: Assign (No spaces!).
+* **`$NAME`**: Access the value.
+* **`export`**: Make it Global.
+* **`readonly`**: Make it a Constant.
+* **`" "`**: Substitute | **`' '`**: Literal.
+
+**Great job! Ready for the final section in Data Handling: 1.1. Shell Arrays?**

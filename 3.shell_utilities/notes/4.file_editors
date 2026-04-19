@@ -1,0 +1,59 @@
+This lab focuses on hands-on practice with **Nano** and **Vim**. Since these are interactive editors, you cannot run them as a single "one-line" command, but these steps are the fastest way to master them.
+
+
+
+---
+
+### 1. The Nano Lab (Beginner)
+**Goal:** Create a file, save it, and exit.
+
+* **Step A:** Open the editor:
+    ```bash
+    nano nano_lab.txt
+    ```
+* **Step B:** Type this text: `Learning Nano is easy.`
+* **Step C:** **Save & Exit:**
+    * Press `Ctrl + O` then `Enter` (Save).
+    * Press `Ctrl + X` (Exit).
+
+---
+
+### 2. The Vim Lab (Professional)
+**Goal:** Master the "Modal" system.
+
+* **Step A:** Open the editor:
+    ```bash
+    vim vim_lab.txt
+    ```
+* **Step B:** **Insert Mode:** Press the `i` key.
+* **Step C:** Type this text: `Vim is for power users.`
+* **Step D:** **Normal Mode:** Press the `Esc` key.
+* **Step E:** **Save & Exit:** Type `:wq` and press `Enter`.
+
+---
+
+### 3. The "Emergency" Force Quit
+**Goal:** Exit without saving when things go wrong.
+
+* **Step A:** Open Vim again:
+    ```bash
+    vim vim_lab.txt
+    ```
+* **Step B:** Mess up the file: Press `i` and type random gibberish.
+* **Step C:** **The Escape:** Press `Esc`, then type `:q!` and press `Enter`.
+
+---
+
+### 4. Verification (Copy & Paste)
+Check that your files were actually saved:
+```bash
+cat nano_lab.txt && cat vim_lab.txt
+```
+
+---
+
+### Shortest Note
+* **Nano**: `Ctrl+O` (Save), `Ctrl+X` (Exit).
+* **Vim**: `i` (Write), `Esc` (Stop), `:wq` (Save/Exit), `:q!` (Exit No Save).
+
+**Ready for the next topic: Text Processing (grep, sed, awk) or Shell Arrays?**

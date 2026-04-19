@@ -1,0 +1,63 @@
+This is the "Pipeline" lab. Pipes and filters allow you to build a custom tool on the fly by connecting simple commands together.
+
+
+
+---
+
+### 1. The Basic Pipe (`|`)
+* **The Concept:** Send the output of one command to be the input of another.
+* **Copy & Paste:**
+```bash
+ls /etc | wc -l
+```
+*(Check: Instead of seeing a giant list of files, you only see the total count.)*
+
+---
+
+### 2. Searching and Sorting (`grep`, `sort`)
+* **The Concept:** Find specific text and arrange it alphabetically.
+* **Copy & Paste:**
+```bash
+ls /etc | grep "conf" | sort
+```
+*(Check: You only see files containing "conf," sorted A-Z.)*
+
+---
+
+### 3. Transformation (`tr`)
+* **The Concept:** Change characters (like making everything Uppercase).
+* **Copy & Paste:**
+```bash
+whoami | tr 'a-z' 'A-Z'
+```
+
+---
+
+### 4. The "T-Splitter" (`tee`)
+* **The Concept:** See the results on your screen **and** save them to a file at the same time.
+* **Copy & Paste:**
+```bash
+ls ~ | tee my_home_files.txt
+```
+*(Check: Run `cat my_home_files.txt` to verify it saved.)*
+
+---
+
+### 5. Advanced Chaining (The "Pro" Move)
+* **The Concept:** Combine multiple filters to get exact data.
+* **Copy & Paste:**
+```bash
+cat /etc/passwd | head -n 10 | tail -n 1 | tr ':' ' '
+```
+*(Logic: Get first 10 lines -> take only the last one -> replace colons with spaces.)*
+
+---
+
+### Shortest Summary Note:
+* **`|` (Pipe)**: Connects commands.
+* **`grep`**: Filters for keywords.
+* **`sort` / `uniq`**: Organizes and cleans data.
+* **`head` / `tail`**: Grabs the top or bottom.
+* **`tee`**: Screen + File.
+
+**Ready to move on to the advanced Text Processing tools (grep, sed, awk) or start Shell Arrays?**
