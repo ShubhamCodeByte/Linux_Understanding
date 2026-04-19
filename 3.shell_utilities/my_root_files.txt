@@ -1,0 +1,9 @@
+Desktop
+Documents
+Downloads
+gitrepo
+Music
+Pictures
+Public
+Templates
+Videos
