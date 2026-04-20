@@ -1,0 +1,64 @@
+This lab covers the essential workflow for creating, securing, and running your own automation scripts in Linux.
+
+
+
+---
+
+### 1. The Script Creation Lab
+**Goal:** Create a script that uses variables and user input.
+
+```bash
+cat << 'EOF' > myscript.sh
+#!/bin/bash
+# This is a comment - the system ignores this
+NAME="Shubham"
+echo "Hello $NAME"
+read -p "Enter your current task: " TASK
+echo "You are currently: $TASK"
+EOF
+```
+
+---
+
+### 2. The Permission & Execution Lab
+**Goal:** Make the file "runnable" and execute it.
+```bash
+chmod +x myscript.sh
+./myscript.sh
+```
+
+---
+
+### 3. The Exit Code Lab (Success vs. Failure)
+**Goal:** Learn how to check if a command worked using `$?`.
+
+* **Test Success:**
+```bash
+ls /etc/passwd
+echo "Exit Code (Success): $?"
+```
+* **Test Failure:**
+```bash
+ls /nonexistent_file
+echo "Exit Code (Error): $?"
+```
+*(Check: Success returns `0`, Error returns `1` or higher.)*
+
+---
+
+### 4. Running Without Permissions
+**Goal:** See the alternative way to run a script if you haven't used `chmod` yet.
+```bash
+bash myscript.sh
+```
+
+---
+
+### Shortest Summary Note
+* **`#!/bin/bash`**: The Shebang (must be line 1).
+* **`chmod +x`**: Essential to make the script an executable.
+* **`./`**: Run the script from the current folder.
+* **`read`**: Captures user input into a variable.
+* **`$?`**: The "Success Detector" (0 = OK).
+
+**You've mastered the shell basics! Shall we move to 1.1. Shell Arrays or start the advanced Text Processing (grep, sed, awk) module?**

@@ -1,0 +1,66 @@
+This lab focuses on the lifecycle of a variable: creating it, sharing it, protecting it, and deleting it.
+
+
+
+---
+
+### 1. Assignment & Access Lab
+**Goal:** Practice the strict "no-space" syntax and retrieval.
+```bash
+# Correct way
+MY_NAME="Shubham"
+echo "My name is: $MY_NAME"
+
+# Incorrect way (Run this to see the error)
+MY_NAME = "Shubham"
+```
+
+---
+
+### 2. The Scope Lab (`export`)
+**Goal:** See how `export` allows a variable to survive inside a sub-process.
+```bash
+# Create local variable
+LOCAL_VAR="Staying Here"
+# Create environment variable
+export GLOBAL_VAR="Going Everywhere"
+
+# Test access in a sub-shell
+bash -c 'echo "Local: $LOCAL_VAR | Global: $GLOBAL_VAR"'
+```
+*(Check: `LOCAL_VAR` should be blank in the result, while `GLOBAL_VAR` prints successfully.)*
+
+---
+
+### 3. The Protection Lab (`readonly`)
+**Goal:** Create a constant that cannot be tampered with.
+```bash
+readonly VERSION="1.0.0"
+# Attempt to change it
+VERSION="2.0.0"
+# Attempt to delete it
+unset VERSION
+```
+*(Check: You should see "readonly variable" errors for both attempts.)*
+
+---
+
+### 4. The Cleanup Lab (`unset`)
+**Goal:** Remove a standard variable from the system memory.
+```bash
+TEMP_DATA="Sensitive Info"
+unset TEMP_DATA
+echo "Data is: $TEMP_DATA"
+```
+*(Check: The output should be empty.)*
+
+---
+
+### Shortest Summary Note
+* **`VAR=val`**: Assign (No spaces!).
+* **`$VAR`**: Access value.
+* **`export`**: Shares variable with other scripts/processes.
+* **`readonly`**: Locks the value permanently.
+* **`unset`**: Deletes the variable.
+
+**Ready for SPECIAL VARIABLES: SYSTEM PARAMETERS ($0, $1, $#), or should we jump to Shell Arrays?**

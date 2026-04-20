@@ -1,0 +1,84 @@
+This lab focuses on **Special Variables**, which allow your scripts to react to user input and monitor the system.
+
+
+
+---
+
+### 1. The Argument Lab
+**Goal:** Create a script that identifies itself and its inputs.
+
+```bash
+cat << 'EOF' > args_lab.sh
+#!/bin/bash
+echo "Script Name (\$0): $0"
+echo "First Argument (\$1): $1"
+echo "Second Argument (\$2): $2"
+echo "Total Count (\$#): $# "
+echo "All Args (\$@): $@"
+EOF
+
+chmod +x args_lab.sh
+```
+
+**Run it with test data:**
+```bash
+./args_lab.sh Kali Linux
+```
+
+---
+
+### 2. The Success & PID Lab
+**Goal:** Observe how Linux tracks success and process identification.
+
+```bash
+# Check Process ID of your current terminal
+echo "My Process ID is: $$"
+
+# Check exit status of a successful command
+ls /etc/passwd
+echo "Success Status (\$?): $?"
+
+# Check exit status of a failing command
+ls /fake/folder
+echo "Failure Status (\$?): $?"
+```
+
+---
+
+### 3. The Background Process Lab
+**Goal:** See how Linux tracks processes running in the background.
+
+```bash
+# Start a 10-second sleep in the background (&)
+sleep 10 &
+
+# Get the ID of that background process
+echo "Last Background Job PID (\$!): $!"
+
+# this is not working in my kali need to check this for sure 			NOTE:
+```
+
+---
+
+### 4. Argument Looping Lab
+**Goal:** See the difference between `$*` (one big string) and `$@` (separate items).
+
+```bash
+# This shows how $@ sees items individually
+for item in "$@"; do
+    echo "Argument: $item"
+done
+```
+*(To test this, run `./args_lab.sh "Item 1" "Item 2"`)*
+
+---
+
+### Shortest Summary Note
+* **`$0`**: The Script Name.
+* **`$1, $2...`**: The inputs provided after the script name.
+* **`$#`**: **Count** of inputs.
+* **`$?`**: Was the last command **Successful**? (0 = Yes).
+* **`$@`**: All inputs as **separate** items.
+* **`$$`**: The ID of the **current** process.
+
+**Ready to move on to 1.1. Shell Arrays or start the Text Processing (grep, sed, awk) module?**
